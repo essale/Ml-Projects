@@ -4,8 +4,9 @@ from keras.layers import MaxPool2D
 from keras.layers import Flatten
 from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
+from keras.models import model_from_json
 from IPython.display import display
-
+from PIL import Image
 
 # BATCH_SIZE
 BATCH_SIZE = 32
@@ -29,13 +30,13 @@ BATCH_SIZE = 32
 # horizontal_flip:
 # is for randomly flipping half of the images horizontally
 # --relevant when there are no assumptions of horizontal assymetry (e.g. real-world pictures).
-train_datagen = ImageDataGenerator(rescale=1./255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
+train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
 
 training_set = train_datagen.flow_from_directory('../dataset/training_set', target_size=(64, 64),
                                                  batch_size=BATCH_SIZE, class_mode='binary')
 
 test_set = train_datagen.flow_from_directory('../dataset/test_set', target_size=(64, 64),
-                                                 batch_size=BATCH_SIZE, class_mode='binary')
+                                             batch_size=BATCH_SIZE, class_mode='binary')
 
 # Init CNN
 classifier = Sequential()
@@ -57,9 +58,39 @@ classifier.add(Flatten())
 
 # Dense layers
 classifier.add(Dense(128, activation='relu'))
-classifier.add(Dense(1, activation='relu'))
+classifier.add(Dense(1, activation='sigmoid'))
 
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # Fit
-classifier.fit_generator(training_set, steps_per_epoch=8000, epochs=10, validation_data=test_set, validation_steps=800)
+# classifier.fit_generator(training_set, steps_per_epoch=8000, epochs=10, validation_data=test_set, validation_steps=800)
+classifier.fit_generator(training_set, steps_per_epoch=8000, epochs=10, validation_data=test_set, validation_steps=800,
+                         workers=8)
+
+# evaluate the model
+scores = classifier.evaluate(training_set, test_set, verbose=0)
+print("%s: %.2f%%" % (classifier.metrics_names[1], scores[1] * 100))
+
+# saving the model
+# serialize model to JSON
+model_json = classifier.to_json()
+with open("../models/model.json", "w") as json_file:
+    json_file.write(model_json)
+
+# serialize weights to HDF5
+classifier.save_weights("../models/model.h5")
+print("Saved model to disk")
+
+# load json and create model
+json_file = open('../models/model.json', 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+# load weights into new model
+loaded_model.load_weights("../models/model.h5")
+print("Loaded model from disk")
+
+# evaluate loaded model on test data
+loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+score = loaded_model.evaluate(training_set, test_set, verbose=0)
+print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1] * 100))
