@@ -15,41 +15,6 @@ src = "https://i.imgur.com/mebnxNv.jpg">
 
 Let’s get an idea of what we’re working with.
 
-#### Advanced stats 
-```
-
-```
-
-#### All-Star Games 
-```
-
-```
-
-#### Game Highs 
-```
-
-```
-
-#### Per game
-```
-
-```
-
-#### Salaries
-```
-
-```
-
-#### Totals
-```
-
-```
-
-#### All games
-```
-
-```
-
 ****
 #### General Terms
 <center>
@@ -112,3 +77,27 @@ Let’s get an idea of what we’re working with.
 
 # Data sources:
 * [Kaggle](https://www.kaggle.com/xvivancos/michael-jordan-vs-kobe-bryant-vs-lebron-james/code)
+* [Classification modules](https://medium.com/@Mandysidana/machine-learning-types-of-classification-9497bd4f2e14)
+
+# Explanations:
+* Confusion Matrix 
+[Confusion Matrix](https://www.geeksforgeeks.org/confusion-matrix-machine-learning/)
+[ConfusionMatrix 2](https://towardsdatascience.com/understanding-data-science-classification-metrics-in-scikit-learn-in-python-3bc336865019)
+```
+A confusion matrix is a table that is often used to describe the performance of a classification model (or “classifier”) on a set of test data for which the true values are known. It allows the visualization of the performance of an algorithm.
+```
+* Logistic Regression 
+[Logistic Regression](https://towardsdatascience.com/logistic-regression-classifier-8583e0c3cf9)
+```
+Logistic Regression is a ‘Statistical Learning’ technique categorized in ‘Supervised’ Machine Learning (ML) methods dedicated to ‘Classification’ tasks.
+```
+
+* Naive Bayes
+[naive-bayes](https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/)
+[naive-bayes2](https://www.datacamp.com/community/tutorials/naive-bayes-scikit-learn)
+
+* Decision Trees
+[Decision Trees](https://scikit-learn.org/stable/modules/tree.html)
+```
+Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+```

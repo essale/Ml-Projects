@@ -1,6 +1,7 @@
 # Ml-Projects
 Here you can find a collection of ML projects
-
+<img 
+     src = 'https://developer.apple.com/assets/elements/icons/core-ml/core-ml-128x128_2x.png'>
 
 # Projects
 #### Deep Learning
