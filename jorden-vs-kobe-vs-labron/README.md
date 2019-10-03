@@ -47,7 +47,7 @@ Let’s get an idea of what we’re working with.
 | **3PAr**      | 3-Point Attempt Rate               |Percentage of FG Attempts from 3-Point Range.|
 | **FTr**       | Free Throw Attempt Rate            |Number of FT Attempts Per FG Attempt.|
 | **ORB%**      | Offensive Rebound Percentage       |An estimate of the percentage of available offensive rebounds a player grabbed while he was on the floor.|
-| **DRB%**      | Defensive Rebound Percentage       |An estimate of the percentage of available defensive rebounds a player grabbed while he was on the floor.|
+| **DRלB%**      | Defensive Rebound Percentage       |An estimate of the percentage of available defensive rebounds a player grabbed while he was on the floor.|
 | **TRB%**      | Total Rebound Percentage           |An estimate of the percentage of available rebounds a player grabbed while he was on the floor.|
 | **AST%**      | Assist Percentage                  |An estimate of the percentage of teammate field goals a player assisted while he was on the floor.|
 | **STL%**      | Steal Percentage                   |An estimate of the percentage of opponent possessions that end with a steal by the player while he was on the floor.|
